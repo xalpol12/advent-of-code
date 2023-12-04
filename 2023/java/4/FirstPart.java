@@ -4,6 +4,7 @@ import java.util.List;
 public class FirstPart {
 
     private static final String FILE_PATH = "inputs/input.txt";
+    
     public static void main(String[] args) {
         List<String> lines = AOCUtilities.parse(FILE_PATH);
         int sum = getSumOfWinningPoints(lines);
