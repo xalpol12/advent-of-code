@@ -125,3 +125,9 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
+
+# Recursively ignore all files named "input.txt" (whatever you named it)
+**/input.txt
+
+# Recursively ignore all files matching ".txt"
+**/*.txt
