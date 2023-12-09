@@ -1,17 +1,19 @@
 import java.util.List;
 
-class FirstPart {
+public class SecondPart {
 
     private static final String FILE_PATH = "inputs/input.txt";
 
     public static void main(String[] args) {
         List<String> lines = AOCUtilities.parse(FILE_PATH);
+
+        System.out.println("=== Executing second part ===");
         AOCUtilities.timerStart();
-        System.out.println(sumAllPredictions(lines));
+        System.out.println(sumAllBackwardPredictions(lines));
         AOCUtilities.timerStop();
     }
 
-    private static int sumAllPredictions(List<String> lines) {
+    private static int sumAllBackwardPredictions(List<String> lines) {
         int sum = 0;
         for (String line : lines) {
             sum += predictNextInLine(line);
@@ -27,10 +29,10 @@ class FirstPart {
             startingValues[i] = Integer.parseInt(split[i]);
         } 
         
-        return predict(startingValues);
+        return predictBackward(startingValues);
     }
 
-    private static int predict(int[] values) {
+    private static int predictBackward(int[] values) {
         if (values[values.length - 1] == 0) {
             return 0;
         }
@@ -41,8 +43,7 @@ class FirstPart {
             nextValues[i] = values[i + 1] - values[i];
         }
 
-
-        int nextRowSum = predict(nextValues);
-        return values[values.length - 1] + nextRowSum;
+        int nextRowDiff = predictBackward(nextValues);
+        return values[0] - nextRowDiff;
     }
 }
